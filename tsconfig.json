@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
+
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+
+    "verbatimModuleSyntax": true,
+    "useDefineForClassFields": true,
+    "exactOptionalPropertyTypes": true,
+
+    "allowJs": false,
+    "allowImportingTsExtensions": true,
+
+    "baseUrl": "./src",
+    "paths": {
+      "@core/*": ["core/*"],
+      "@physics/*": ["physics/*"],
+      "@render/*": ["render/*"],
+      "@game/*": ["game/*"]
+    },
+
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  }
+}
