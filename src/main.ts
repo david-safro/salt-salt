@@ -36,14 +36,4 @@ async function init() {
   });
 }
 
-  // const infoText = new Text({
-  //   text: "gay text test",
-  //   style: {
-  //     fontSize: 16,
-  //     fill: 0xffffff,
-  //   },
-  // });
-  // infoText.position.set(10, HEIGHT - 30);
-  // app.stage.addChild(infoText);
-
 init();
