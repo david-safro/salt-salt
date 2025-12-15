@@ -1,11 +1,13 @@
-import { Application, Graphics, Text } from "pixi.js";
+import { Text } from "pixi.js";
+import { Render } from "@render/Renderer"
 import { Body } from "@physics/Body.ts";
 import { Vec2 } from "@physics/math/Vec2.ts";
 
 const WIDTH = 800;
 const HEIGHT = 600;
 const GRAVITY = new Vec2(0, 980);
-const app = new Application();
+const renderer = new Render;
+const app = renderer.app
 
 const bodies: Body[] = [];
 
@@ -46,23 +48,18 @@ function createBodies() {
     );
 
     bodies.push(body);
-    const graphics = new Graphics();
-    graphics.circle(0, 0, body.radius);
-    graphics.fill({ color: getRandomColor() });
-    graphics.position.set(body.position.x, body.position.y);
-    app.stage.addChild(graphics);
-    (body as any).graphics = graphics;
+    renderer.renderBody(body)
   }
 
-  const infoText = new Text({
-    text: "gay text test",
-    style: {
-      fontSize: 16,
-      fill: 0xffffff,
-    },
-  });
-  infoText.position.set(10, HEIGHT - 30);
-  app.stage.addChild(infoText);
+  // const infoText = new Text({
+  //   text: "gay text test",
+  //   style: {
+  //     fontSize: 16,
+  //     fill: 0xffffff,
+  //   },
+  // });
+  // infoText.position.set(10, HEIGHT - 30);
+  // app.stage.addChild(infoText);
 }
 
 function addBody(x: number, y: number) {
@@ -75,13 +72,7 @@ function addBody(x: number, y: number) {
 
   bodies.push(body);
 
-  const graphics = new Graphics();
-  graphics.circle(0, 0, body.radius);
-  graphics.fill({ color: getRandomColor() });
-  graphics.position.set(body.position.x, body.position.y);
-  app.stage.addChild(graphics);
-
-  (body as any).graphics = graphics;
+  renderer.renderBody(body)
 }
 
 function update(dt: number) {
@@ -93,10 +84,7 @@ function update(dt: number) {
     body.update(dt);
 
     handleWallCollisions(body);
-    const graphics = (body as any).graphics as Graphics;
-    if (graphics) {
-      graphics.position.set(body.position.x, body.position.y);
-    }
+    renderer.updateBody(body)
   }
   for (let i = 0; i < bodies.length; i++) {
     for (let j = i + 1; j < bodies.length; j++) {
